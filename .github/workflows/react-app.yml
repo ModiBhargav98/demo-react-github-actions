@@ -27,7 +27,4 @@ jobs:
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN  }}  # This token is automatically provided by GitHub Actions
-        run: |
-          git config --global user.name 'modibhargav98'
-          git config --global user.email 'modibhargav1998@gmail.com'
-          npm run deploy
+        run: npm run deploy
