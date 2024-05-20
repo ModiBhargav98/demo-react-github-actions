@@ -1,37 +1,33 @@
-name: CI/CD for React App
+name: Deploy Vite App to GitHub Pages
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
-
-permissions:
-  contents: write
+      - main  # Change this to your default branch
 
 jobs:
-  build_and_deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
-          node-version: 18.x
+          node-version: '18'  # or use the version of Node.js you need
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build Project
+      - name: Build the Vite app
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
-          user_name: modibhargav98
-          user_email: modibhargav1998@gmail.com
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # This token is automatically provided by GitHub Actions
+        run: |
+          git config --global user.name 'modibhargav98'
+          git config --global user.email 'modibhargav1998@gmail.com'
+          npm run deploy
