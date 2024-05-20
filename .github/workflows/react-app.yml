@@ -27,5 +27,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # This token is automatically provided by GitHub Actions
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # This token is automatically provided by GitHub Actions
           publish_dir: dist  # Adjust this to the directory where your Vite app builds
